@@ -1,0 +1,43 @@
+name: Simple CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Backend image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/hack-innovate-backend:${{ github.sha }} ./backend
+          docker tag ${{ secrets.DOCKER_USERNAME }}/hack-innovate-backend:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/hack-innovate-backend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/hack-innovate-backend:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/hack-innovate-backend:latest
+
+      - name: Build and push Frontend image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/hack-innovate-frontend:${{ github.sha }} ./frontend
+          docker tag ${{ secrets.DOCKER_USERNAME }}/hack-innovate-frontend:${{ github.sha }} ${{ secrets.DOCKER_USERNAME }}/hack-innovate-frontend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/hack-innovate-frontend:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/hack-innovate-frontend:latest
+
+      - name: Deploy to Kubernetes
+        run: |
+          echo "Applying mongo-deployment.yaml"
+          kubectl apply -f k8s/mongo-deployment.yaml
+          echo "Applying backend-deployment.yaml"
+          kubectl apply -f k8s/backend-deployment.yaml
+          echo "Applying frontend-deployment.yaml"
+          kubectl apply -f k8s/frontend-deployment.yaml
