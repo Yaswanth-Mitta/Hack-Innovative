@@ -16,7 +16,7 @@ spec:
         - name: mongo
           image: mongo:6.0
           ports:
-            - containerPort: 27017
+            - containerPort: 27018
           volumeMounts:
             - name: mongo-data
               mountPath: /data/db
@@ -32,5 +32,5 @@ spec:
   selector:
     app: mongo
   ports:
-    - port: 27017
-      targetPort: 27017
+    - port: 27018
+      targetPort: 27018

@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # MongoDB configuration
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI", "mongodb://mongo:27017/chat_db")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI", "mongodb://mongo:27018/chat_db")
 mongo = PyMongo(app)
 chat_rooms_collection = mongo.db.rooms
 
@@ -54,4 +54,4 @@ def post_message(room_key):
     return jsonify({"message": "Message sent"}), 201
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True)

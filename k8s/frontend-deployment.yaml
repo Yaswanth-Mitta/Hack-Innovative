@@ -16,7 +16,7 @@ spec:
         - name: frontend
           image: yaswanthmitta/frontend:latest # Replace with your Docker Hub image
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -27,6 +27,6 @@ spec:
   selector:
     app: frontend
   ports:
-    - port: 80
-      targetPort: 80
-      nodePort: 30080
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30081

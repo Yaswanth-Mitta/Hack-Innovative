@@ -16,10 +16,10 @@ spec:
         - name: backend
           image: yaswanthmitta/backend:latest # Replace with your Docker Hub image
           ports:
-            - containerPort: 5000
+            - containerPort: 5001
           env:
             - name: MONGO_URI
-              value: mongodb://mongo:27017/chat_db
+              value: mongodb://mongo:27018/chat_db
 ---
 apiVersion: v1
 kind: Service
@@ -29,5 +29,5 @@ spec:
   selector:
     app: backend
   ports:
-    - port: 5000
-      targetPort: 5000
+    - port: 5001
+      targetPort: 5001
