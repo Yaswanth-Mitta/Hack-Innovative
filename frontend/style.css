@@ -1,0 +1,104 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #74ABE2, #5563DE);
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.container.hidden {
+    display: none;
+}
+
+h1 {
+    color: #5563DE;
+    margin-bottom: 25px;
+}
+
+input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-bottom: 15px;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: #5563DE;
+}
+
+.button-group, .input-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+button {
+    background-color: #5563DE;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #4052b5;
+}
+
+#messages {
+    height: 300px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: left;
+    overflow-y: auto;
+    background: #f9f9f9;
+}
+
+#messages p {
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+#messages .user-message {
+    background-color: #e6f7ff;
+    border-left: 3px solid #5563DE;
+}
+
+.status-message {
+    font-style: italic;
+    color: #666;
+    text-align: center;
+}
+
+.leave-btn {
+    background-color: #ff4d4d;
+    margin-top: 20px;
+}
+
+.leave-btn:hover {
+    background-color: #d93636;
+}
